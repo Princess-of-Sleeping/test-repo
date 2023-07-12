@@ -30,8 +30,9 @@ jobs:
         git push origin master
     - name: build test
       run: |
+        echo "${PWD}"
         git clone --recursive https://github.com/vitasdk/vita-toolchain
         cd vita-toolchain
         ./build.sh
-        cd /usr/local/bin
-        ls
+        cd build
+        make install
