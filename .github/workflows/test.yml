@@ -1,0 +1,25 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - '*'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@master
+    - name: abcdef
+      run: |
+        echo "ABDEF" > log.txt
+    - name: git setting
+      run: |
+        git config --global user.email "builds@travis-ci.com"
+        git config --global user.name "Travis CI"
+    - name: Commit files
+      run: |
+        git add .
+        git commit -a
+        git pull
+        git push origin master
