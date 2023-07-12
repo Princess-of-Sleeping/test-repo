@@ -40,5 +40,5 @@ jobs:
     - name: print
       run: |
         tar -zcvf toolchain-linux.tar.gz ${PWD}/vita-toolchain/build/usr/local
-        rm -r ./vita-toolchain
+        sudo rm -r ./vita-toolchain
         ls
