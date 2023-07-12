@@ -28,7 +28,6 @@ jobs:
     - name: Clone vita-headers
       run: |
         git clone --recursive https://github.com/vitasdk/vita-headers
-        ls
     - name: download toolchain
       run: |
         mkdir _
@@ -36,11 +35,19 @@ jobs:
         wget https://github.com/Princess-of-Sleeping/test-repo/raw/master/toolchain-linux.tar.gz -O - | tar "jxvf" -
     - name: build
       run: |
-        mkdir -p "vitasdk/arm-vita-eabi"
+        mkdir -p "vitasdk/arm-vita-eabi/lib"
         mkdir -p "vitasdk/share/vita-headers/db"
         cd vita-headers
         cp -r "./include" "../vitasdk/arm-vita-eabi"
         cp -r "./db" "../vitasdk/share/vita-headers"
+    - name: build-nid-db
+      run: |
+        ./_/vitasdk/bin/vita-libs-gen-2 -yml=./vita-headers/db -output=./dstdir
+        cd dstdir
+        make
+        cp *.a ../vitasdk/arm-vita-eabi/lib
+        cd ..
+        rm -r dstdir
     - name: clean up
       run: |
         sudo rm -r ./vita-headers
