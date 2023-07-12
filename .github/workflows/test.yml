@@ -35,5 +35,5 @@ jobs:
         ls
         ./build.sh
         ls
-        cd /bin
+        cd ./build/src
         ls
