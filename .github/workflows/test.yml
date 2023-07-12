@@ -32,7 +32,7 @@ jobs:
       run: |
         mkdir toolchain-build
         cd vita-toolchain/build/usr/local
-        cp "./" "toolchain-build"
+        cp -r "./" "toolchain-build"
     - name: print
       run: |
         sudo tar "cfvj" "toolchain-linux.tar.gz" "toolchain-build"
