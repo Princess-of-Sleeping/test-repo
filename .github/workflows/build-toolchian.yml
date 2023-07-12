@@ -7,8 +7,12 @@ permissions:
 
 on:
   push:
-    branches:
-      - '*'
+    # branches:
+    #   - '*'
+  pull_request:
+  repository_dispatch:
+    types: [run_build]
+
 jobs:
   build:
     runs-on: ubuntu-latest
