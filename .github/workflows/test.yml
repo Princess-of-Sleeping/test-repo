@@ -33,6 +33,11 @@ jobs:
     - name: build test
       run: |
         echo "${PWD}"
+        mkdir lib
+        mkdir include
+        mkdir bin
+        mkdir share
+        export PATH=$PWD:$PATH
         git clone --recursive https://github.com/vitasdk/vita-toolchain
         cd vita-toolchain
         export CMAKE_INSTALL_PREFIX=$PWD
