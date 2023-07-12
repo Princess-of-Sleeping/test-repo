@@ -30,7 +30,7 @@ jobs:
         git push origin master
     - name: build test
       run: |
-        git clone https://github.com/vitasdk/vita-toolchain
+        git clone --recursive https://github.com/vitasdk/vita-toolchain
         cd vita-toolchain
         ls
         ./build.sh
