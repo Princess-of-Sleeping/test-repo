@@ -32,8 +32,6 @@ jobs:
       run: |
         git clone --recursive https://github.com/vitasdk/vita-toolchain
         cd vita-toolchain
-        ls
         ./build.sh
-        ls
-        cd ./build/src
+        cd /usr/local/bin
         ls
