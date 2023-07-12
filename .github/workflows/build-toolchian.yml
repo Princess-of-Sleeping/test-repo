@@ -6,9 +6,9 @@ permissions:
   contents: write
 
 on:
-  push:
-    # branches:
-    #   - '*'
+  # push:
+  #   branches:
+  #     - '*'
   repository_dispatch:
     types: [run_build]
   workflow_dispatch:
