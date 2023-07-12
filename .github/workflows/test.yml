@@ -30,8 +30,11 @@ jobs:
         sudo make install DESTDIR=${PWD}
     - name: print
       run: |
-        sudo tar "cfvj" "toolchain-linux.tar.gz" "vita-toolchain/build/usr/local"
+        mkdir toolchain-build
+        cp -r "vita-toolchain/build/usr/local" "toolchain-build"
+        sudo tar "cfvj" "toolchain-linux.tar.gz" "toolchain-build"
         sudo rm -r ./vita-toolchain
+        sudo rm -r ./toolchain-build
     - name: abcdef
       run: |
         echo "ABDEF" >> log.txt
