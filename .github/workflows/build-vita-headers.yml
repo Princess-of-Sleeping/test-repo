@@ -35,3 +35,15 @@ jobs:
         cd _
         wget https://github.com/Princess-of-Sleeping/test-repo/raw/master/toolchain-linux.tar.gz -O - | tar "jxvf" -
         ls
+    - name: print
+      run: |
+        mkdir -p "vitasdk/arm-vita-eabi"
+        mkdir -p "vitasdk/share/vita-headers/db"
+        cd vita-headers
+        cp -r "./include" "../vitasdk/arm-vita-eabi"
+        cp -r "./db" "../vitasdk/share/vita-headers/db"
+    - name: clean up
+      run: |
+        sudo rm -r ./vita-headers
+        sudo rm -r ./_
+        ls
