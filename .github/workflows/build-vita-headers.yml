@@ -1,0 +1,37 @@
+name: Test
+
+permissions:
+  actions: write
+  checks: write
+  contents: write
+
+on:
+  # push:
+  #   branches:
+  #     - '*'
+  repository_dispatch:
+    types: [run_build]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+    - name: git setting
+      run: |
+        git config --global user.email "action@github.com"
+        git config --global user.name "GitHub Action"
+    - name: Clone vita-headers
+      run: |
+        git clone --recursive https://github.com/vitasdk/vita-headers
+        ls
+    - name: print
+      run: |
+        mkdir _
+        cd _
+        wget https://github.com/Princess-of-Sleeping/test-repo/raw/master/toolchain-linux.tar.gz -O - | tar xvf -
+        ls
