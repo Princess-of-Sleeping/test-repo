@@ -32,19 +32,16 @@ jobs:
         ./build.sh
         cd build
         sudo make install DESTDIR=${PWD}
-    - name: print
+    - name: copy install
       run: |
-        mkdir toolchain-build
+        mkdir vitasdk
         cd vita-toolchain/build/usr/local
-        cp -r "./" "../../../../toolchain-build"
-    - name: print
+        cp -r "./" "../../../../vitasdk"
+    - name: build tar
       run: |
-        sudo tar "cfvj" "toolchain-linux.tar.gz" "toolchain-build"
+        sudo tar "cfvj" "toolchain-linux.tar.gz" "vitasdk"
         sudo rm -r ./vita-toolchain
-        sudo rm -r ./toolchain-build
-    - name: abcdef
-      run: |
-        echo "ABDEF" >> log.txt
+        sudo rm -r ./vitasdk
     - name: Commit files
       run: |
         git add .
