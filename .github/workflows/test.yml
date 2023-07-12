@@ -39,6 +39,6 @@ jobs:
         sudo make install DESTDIR=${PWD}
     - name: print
       run: |
-        echo "${PATH}"
         tar -zcvf toolchain-linux.tar.gz ${PWD}/vita-toolchain/build/usr/local
+        rm -r ./vita-toolchain
         ls
