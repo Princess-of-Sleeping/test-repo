@@ -35,6 +35,8 @@ jobs:
         echo "${PWD}"
         git clone --recursive https://github.com/vitasdk/vita-toolchain
         cd vita-toolchain
+        export CMAKE_INSTALL_PREFIX=$PWD
+        echo $CMAKE_INSTALL_PREFIX
         ./build.sh
         cd build
         sudo make install
