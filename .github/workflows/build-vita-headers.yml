@@ -29,13 +29,12 @@ jobs:
       run: |
         git clone --recursive https://github.com/vitasdk/vita-headers
         ls
-    - name: print
+    - name: download toolchain
       run: |
         mkdir _
         cd _
         wget https://github.com/Princess-of-Sleeping/test-repo/raw/master/toolchain-linux.tar.gz -O - | tar "jxvf" -
-        ls
-    - name: print
+    - name: build
       run: |
         mkdir -p "vitasdk/arm-vita-eabi"
         mkdir -p "vitasdk/share/vita-headers/db"
@@ -46,4 +45,13 @@ jobs:
       run: |
         sudo rm -r ./vita-headers
         sudo rm -r ./_
-        ls
+    - name: build tar
+      run: |
+        sudo tar "cfvj" "vita-headers-linux.tar.gz" "vitasdk"
+        sudo rm -r ./vitasdk
+    - name: Commit files
+      run: |
+        git add .
+        git commit -m "Merge" -a
+        git pull --rebase
+        git push origin master
