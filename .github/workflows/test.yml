@@ -36,5 +36,5 @@ jobs:
         git clone --recursive https://github.com/vitasdk/vita-toolchain
         cd vita-toolchain
         ./build.sh
-        cd build
-        make install -DINSTALL_DIR=/usr/local/lib
+        cd build/src
+        ls
