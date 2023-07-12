@@ -36,6 +36,9 @@ jobs:
         git clone --recursive https://github.com/vitasdk/vita-toolchain
         cd vita-toolchain
         ./build.sh
+        export CMAKE_INSTALL_PREFIX=$PWD
+        cd build
+        make install
     - name: print
       run: |
         echo "${PATH}"
