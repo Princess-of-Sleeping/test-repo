@@ -33,5 +33,5 @@ jobs:
       run: |
         mkdir _
         cd _
-        wget https://github.com/Princess-of-Sleeping/test-repo/raw/master/toolchain-linux.tar.gz -O - | tar xvf -
+        wget https://github.com/Princess-of-Sleeping/test-repo/raw/master/toolchain-linux.tar.gz -O - | tar "jxvf" -
         ls
