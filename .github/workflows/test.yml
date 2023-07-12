@@ -31,5 +31,6 @@ jobs:
     - name: build test
       run: |
         git clone https://github.com/vitasdk/vita-toolchain
+        ls
         ./build.sh
         ls
