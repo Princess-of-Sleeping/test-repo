@@ -31,7 +31,7 @@ jobs:
     - name: print
       run: |
         cd ./vita-toolchain/build/usr/local
-        sudo tar -zcvf toolchain-linux.tar.gz ./
+        sudo tar -zcvf toolchain-linux.tar.gz bin include share lib
         cd ../../../../
         sudo rm -r ./vita-toolchain
     - name: abcdef
