@@ -31,7 +31,7 @@ jobs:
     - name: print
       run: |
         mkdir toolchain-build
-        cp -r "vita-toolchain/build/usr/local" "toolchain-build"
+        cp "vita-toolchain/build/usr/local" "toolchain-build"
         sudo tar "cfvj" "toolchain-linux.tar.gz" "toolchain-build"
         sudo rm -r ./vita-toolchain
         sudo rm -r ./toolchain-build
