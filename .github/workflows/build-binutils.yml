@@ -37,6 +37,7 @@ jobs:
         cd build
         cmake ../../
         make -j$(nproc) tarball
+        ls
     - name: after build
       run: |
         cp _/build/vitasdk-linux-binutils-latest.tar.bz2 ./vitasdk-linux-binutils-latest.tar.bz2
