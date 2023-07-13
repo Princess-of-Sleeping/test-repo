@@ -75,8 +75,8 @@ set(target_arch arm-vita-eabi)
 # Build date
 string(TIMESTAMP build_date "%Y-%m-%d_%H-%M-%S")
 
-include("../cmake/Utils")
-include("../cmake/GetTriplet")
+include("../cmake/Utils.cmake")
+include("../cmake/GetTriplet.cmake")
 include(ExternalProject)
 
 # Identify host and build systems
