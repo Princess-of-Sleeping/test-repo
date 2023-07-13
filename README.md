@@ -6,7 +6,7 @@
 | gdb | None | [![build-gdb](https://github.com/Princess-of-Sleeping/test-repo/actions/workflows/build_gdb.yml/badge.svg)](https://github.com/Princess-of-Sleeping/test-repo/actions/workflows/build_gdb.yml) |
 | vita-toolchain | libelf, zlib, libzip, libyaml | [![build-vita-toolchain](https://github.com/Princess-of-Sleeping/test-repo/actions/workflows/build-toolchian.yml/badge.svg)](https://github.com/Princess-of-Sleeping/test-repo/actions/workflows/build-toolchian.yml) |
 | vita-headers | vita-toolchain, binutils | [![build-vita-headers](https://github.com/Princess-of-Sleeping/test-repo/actions/workflows/build-vita-headers.yml/badge.svg)](https://github.com/Princess-of-Sleeping/test-repo/actions/workflows/build-vita-headers.yml) |
-| gcc-base | None | - |
+| gcc-base | None | [![build-gcc-base](https://github.com/Princess-of-Sleeping/test-repo/actions/workflows/build-gcc-base.yml/badge.svg)](https://github.com/Princess-of-Sleeping/test-repo/actions/workflows/build-gcc-base.yml) |
 | newlib | binutils, gcc-base, vita-headers | - |
 | pthread-embedded | binutils, gcc-base, vita-headers, newlib | - |
 | gcc-complete | newlib, gmp, mpfr, mpc, isl, libelf | - |
