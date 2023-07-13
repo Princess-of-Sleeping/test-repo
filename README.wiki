@@ -4,13 +4,53 @@
 |-
 ! Name
 ! Dependent
+! Completion
 |-
 | binutils
 | None
+| Yes
 |-
 | gdb
 | None
+| Yes
 |-
 | vita-toolchain
 | some libs
+| Yes
+|-
+| gcc-base
+| None
+| No
+|-
+| vita-headers
+| vita-toolchain, binutils
+| No
+|-
+| newlib
+| binutils, gcc-base, vita-headers
+| No
+|-
+| gcc-complete
+| newlib, gmp, mpfr, mpc, isl, libelf
+| No
+|-
+| pthread-embedded
+| binutils, gcc-base, newlib, vita-headers
+| No
+|-
+| gcc-final
+| gmp, mpfr, mpc, isl, libelf
+| No
+|-
+| samples
+| None
+| No
+|-
+| vdpm
+| None
+| No
+|-
+| vita-makepkg
+| None
+| No
 |}
