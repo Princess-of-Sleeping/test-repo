@@ -35,7 +35,7 @@ jobs:
         cd _
         mkdir build
         cd build
-        cmake ..
+        cmake ../../
         make -j$(nproc) tarball
     - name: after build
       run: |
