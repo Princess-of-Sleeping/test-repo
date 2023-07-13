@@ -487,6 +487,35 @@ ExternalProject_add(gcc-base
     INSTALL_COMMAND $(MAKE) install-gcc
     )
 
+ExternalProject_Add(newlib
+    DEPENDS gcc-base
+    GIT_REPOSITORY https://github.com/vitasdk/newlib
+    GIT_TAG ${NEWLIB_TAG}
+    ${GIT_SHALLOW_SUPPORT}
+    # Pass the compiler_target_tools here so newlib picks up the fresh gcc-base compiler
+    CONFIGURE_COMMAND ${compiler_flags} ${toolchain_tools} ${compiler_target_tools}
+    ${wrapper_command} <SOURCE_DIR>/configure "CFLAGS_FOR_TARGET=-g -O2 -ffunction-sections -fdata-sections"
+    --build=${build_native}
+    --host=${host_native}
+    --target=${target_arch}
+    # Use this prefix so the install target can be run twice with different paths
+    --prefix=/
+    --with-build-sysroot=${CMAKE_INSTALL_PREFIX}/${target_arch}
+    --enable-newlib-io-long-long
+    --enable-newlib-register-fini
+    --disable-newlib-supplied-syscalls
+    --enable-newlib-long-time_t
+    --disable-nls
+    --enable-newlib-iconv
+    BUILD_COMMAND ${compiler_flags} ${toolchain_tools} ${wrapper_command} $(MAKE)
+    INSTALL_COMMAND $(MAKE) install DESTDIR=${CMAKE_INSTALL_PREFIX}
+    # Install a copy of newlib in the toolchain directory (required for pthread-embedded target)
+    COMMAND $(MAKE) install DESTDIR=${toolchain_build_install_dir}
+    # Save the commit id for tracking purposes
+    COMMAND ${GIT_EXECUTABLE} -C <SOURCE_DIR> rev-parse HEAD > ${CMAKE_BINARY_DIR}/newlib-version.txt
+    ${UPDATE_DISCONNECTED_SUPPORT}
+    )
+
 set(version_info_file ${CMAKE_INSTALL_PREFIX}/version_info.txt)
 
 # Merge the commit ids of the collected projects into a single file
@@ -501,7 +530,7 @@ add_custom_command(OUTPUT ${version_info_file}
 add_custom_command(OUTPUT "vitasdk-${host_native}-gcc-base-latest.tar.bz2"
     # COMMAND ${CMAKE_COMMAND} -E tar "cfvj" "vitasdk-${host_native}-gcc-base-latest.tar.bz2" "${CMAKE_INSTALL_PREFIX}"
     COMMAND ${CMAKE_COMMAND} -E tar "cfvj" "vitasdk-${host_native}-gcc-base-latest.tar.bz2" "${toolchain_build_install_dir}"
-    DEPENDS gcc-base
+    DEPENDS newlib
     COMMENT "Creating vitasdk-${host_os}-${build_date}.tar.bz2"
     )
 
