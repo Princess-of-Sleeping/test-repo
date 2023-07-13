@@ -33,10 +33,12 @@ jobs:
         chmod +x *.sh
         mkdir _
         cd _
+        mkdir gcc_output
         cmake ../build_gcc_base/
-        make tarball
+        make tarball DESTDIR=${PWD}/gcc_output/
     - name: build test
       run: |
+        cd _/gcc_output
         ls
     - name: after build
       run: |
