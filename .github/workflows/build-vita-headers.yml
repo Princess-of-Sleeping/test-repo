@@ -33,17 +33,12 @@ jobs:
         wget https://github.com/Princess-of-Sleeping/test-repo/raw/master/release/vitasdk-x86_64-linux-gnu-vita-toolchain-latest.tar.bz2 -O - | tar "jxvf" -
     - name: build
       run: |
-        mkdir _
         cd _
         cmake ../build_vita-headers
         make tarball
     - name: clean up
       run: |
         sudo rm -r ./_
-    - name: build tar
-      run: |
-        sudo tar "cfvj" "vita-headers-linux.tar.gz" "vitasdk"
-        sudo rm -r ./vitasdk
     - name: Commit files
       run: |
         git add .
