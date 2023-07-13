@@ -499,7 +499,8 @@ add_custom_command(OUTPUT ${version_info_file}
 
 # add_custom_command(OUTPUT "vitasdk-${host_native}-${build_date}.tar.bz2"
 add_custom_command(OUTPUT "vitasdk-${host_native}-gcc-base-latest.tar.bz2"
-    COMMAND ${CMAKE_COMMAND} -E tar "cfvj" "vitasdk-${host_native}-gcc-base-latest.tar.bz2" "${CMAKE_INSTALL_PREFIX}"
+    # COMMAND ${CMAKE_COMMAND} -E tar "cfvj" "vitasdk-${host_native}-gcc-base-latest.tar.bz2" "${CMAKE_INSTALL_PREFIX}"
+    COMMAND ${CMAKE_COMMAND} -E tar "cfvj" "vitasdk-${host_native}-gcc-base-latest.tar.bz2" "${toolchain_build_install_dir}"
     DEPENDS gcc-base
     COMMENT "Creating vitasdk-${host_os}-${build_date}.tar.bz2"
     )
