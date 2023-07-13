@@ -31,8 +31,16 @@ jobs:
     - name: build test
       run: |
         chmod +x *.sh
+        mkdir _
+        cd _
         mkdir build
         cd build
         cmake ..
         make -j$(nproc) tarball
+    - name: after build
+      run: |
+        ls
+    - name: after build 2
+      run: |
+        cd _
         ls
