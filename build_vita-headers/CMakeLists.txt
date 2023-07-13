@@ -494,7 +494,7 @@ ExternalProject_add(vita-headers
     ${GIT_SHALLOW_SUPPORT}
     CONFIGURE_COMMAND ""
     # BUILD_COMMAND VITA_LIBS_GEN=${vita_libs_gen_command}
-    BUILD_COMMAND VITA_LIBS_GEN="${VITASDK}/bin/vita-libs-gen"
+    BUILD_COMMAND VITA_LIBS_GEN="vita-libs-gen"
         ARCH=${binutils_prefix}
         BYPASS_INSTALL=1
         python <SOURCE_DIR>/build.py <BINARY_DIR>
