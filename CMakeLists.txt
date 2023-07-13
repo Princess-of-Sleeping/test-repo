@@ -411,4 +411,5 @@ add_custom_command(OUTPUT "vitasdk-${host_native}-${build_date}.tar.bz2"
     )
 
 # Create a sdk tarball
-add_custom_target(tarball DEPENDS "vitasdk-${host_native}-${build_date}.tar.bz2")
+# add_custom_target(tarball DEPENDS "vitasdk-${host_native}-${build_date}.tar.bz2")
+add_custom_target(tarball DEPENDS "vitasdk-binutils-latest.tar.bz2")
