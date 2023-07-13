@@ -33,7 +33,7 @@ jobs:
         chmod +x *.sh
         mkdir _
         cd _
-        cmake ../build_gcc_base/
+        cmake ../build_newlib/
         make tarball
     - name: after build
       run: |
