@@ -30,6 +30,7 @@ jobs:
         git config --global user.name "GitHub Action"
     - name: build test
       run: |
+        chmod +x *.sh
         mkdir build
         cd build
         cmake ..
