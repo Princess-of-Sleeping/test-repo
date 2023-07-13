@@ -34,6 +34,7 @@ jobs:
         ls
     - name: clean up
       run: |
+        cp _/build/vitasdk-x86_64-linux-gnu-vita-headers-latest.tar.bz2 ./release/vitasdk-x86_64-linux-gnu-vita-headers-latest.tar.bz2
         sudo rm -r ./_
     - name: Commit files
       run: |
