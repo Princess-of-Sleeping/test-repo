@@ -405,12 +405,12 @@ add_custom_command(OUTPUT ${version_info_file}
     )
 
 # add_custom_command(OUTPUT "vitasdk-${host_native}-${build_date}.tar.bz2"
-add_custom_command(OUTPUT "vitasdk-binutils-latest.tar.bz2"
-    COMMAND ${CMAKE_COMMAND} -E tar "cfvj" "vitasdk-binutils-latest.tar.bz2" "${CMAKE_INSTALL_PREFIX}"
+add_custom_command(OUTPUT "vitasdk-${host_native}-binutils-latest.tar.bz2"
+    COMMAND ${CMAKE_COMMAND} -E tar "cfvj" "vitasdk-${host_native}-binutils-latest.tar.bz2" "${CMAKE_INSTALL_PREFIX}"
     DEPENDS binutils_${target_suffix}
     COMMENT "Creating vitasdk-${host_os}-${build_date}.tar.bz2"
     )
 
 # Create a sdk tarball
 # add_custom_target(tarball DEPENDS "vitasdk-${host_native}-${build_date}.tar.bz2")
-add_custom_target(tarball DEPENDS "vitasdk-binutils-latest.tar.bz2")
+add_custom_target(tarball DEPENDS "vitasdk-${host_native}-binutils-latest.tar.bz2")
