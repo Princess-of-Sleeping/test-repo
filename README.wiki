@@ -1,0 +1,13 @@
+# test-repo
+
+{| class="wikitable"
+|-
+! Name
+! Dependent
+|-
+| binutils
+| None
+|-
+| vita-toolchain
+| some libs
+|}
