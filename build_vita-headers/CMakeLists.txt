@@ -487,21 +487,43 @@ ExternalProject_add(gcc-base
     INSTALL_COMMAND $(MAKE) install-gcc
     )
 
+
+ExternalProject_add(pre-toolchain
+    URL https://github.com/Princess-of-Sleeping/test-repo/raw/master/release/vitasdk-x86_64-linux-gnu-vita-toolchain-latest.tar.bz2
+    URL_HASH ""
+    DOWNLOAD_DIR "./"
+    CONFIGURE_COMMAND ""
+    BUILD_COMMAND ""
+    INSTALL_COMMAND ""
+    )
+
+ExternalProject_add(pre-binutils
+    URL https://github.com/Princess-of-Sleeping/test-repo/raw/master/release/vitasdk-x86_64-linux-gnu-binutils-latest.tar.bz2
+    URL_HASH ""
+    DOWNLOAD_DIR "./"
+    CONFIGURE_COMMAND ""
+    BUILD_COMMAND ""
+    INSTALL_COMMAND ""
+    )
+
+set(___ "${CMAKE_CURRENT_BINARY_DIR}/pre-toolchain-prefix/src/pre-toolchain/bin/vita-libs-gen")
+set(binutils_prefix "${CMAKE_CURRENT_BINARY_DIR}/pre-binutils-prefix/src/pre-binutils/bin/arm-vita-eabi")
+
 ExternalProject_add(vita-headers
-    # DEPENDS binutils_${build_suffix} vita-toolchain_${build_suffix}
+    DEPENDS pre-binutils pre-toolchain
     GIT_REPOSITORY https://github.com/vitasdk/vita-headers
     GIT_TAG ${HEADERS_TAG}
     ${GIT_SHALLOW_SUPPORT}
     CONFIGURE_COMMAND ""
     # BUILD_COMMAND VITA_LIBS_GEN=${vita_libs_gen_command}
-    BUILD_COMMAND VITA_LIBS_GEN="vita-libs-gen"
+    BUILD_COMMAND VITA_LIBS_GEN="${___}"
         ARCH=${binutils_prefix}
         BYPASS_INSTALL=1
         python <SOURCE_DIR>/build.py <BINARY_DIR>
     # Copy the generated .a files to the install directory
     INSTALL_COMMAND ${CMAKE_COMMAND} -DGLOB_PATTERN=<BINARY_DIR>/*/*/*a
     -DINSTALL_DIR=${CMAKE_INSTALL_PREFIX}/${target_arch}/lib
-    -P ${CMAKE_SOURCE_DIR}/cmake/install_files.cmake
+    -P ${CMAKE_SOURCE_DIR}/../cmake/install_files.cmake
     # Copy the include headers to the installation directory
     COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_INSTALL_PREFIX}/${target_arch}/include
     COMMAND ${CMAKE_COMMAND} -E copy_directory <SOURCE_DIR>/include ${CMAKE_INSTALL_PREFIX}/${target_arch}/include
