@@ -75,8 +75,8 @@ set(target_arch arm-vita-eabi)
 # Build date
 string(TIMESTAMP build_date "%Y-%m-%d_%H-%M-%S")
 
-include(Utils)
-include(GetTriplet)
+include("../cmake/Utils")
+include("../cmake/GetTriplet")
 include(ExternalProject)
 
 # Identify host and build systems
@@ -93,7 +93,7 @@ set(pkgversion "GNU Tools for ARM Embedded Processors")
 # Load the compiler flags to pass them to the other projects
 load_flags(compiler_flags)
 
-set(wrapper_command ${PROJECT_SOURCE_DIR}/command_wrapper.sh)
+set(wrapper_command ${PROJECT_SOURCE_DIR}/../command_wrapper.sh)
 
 # Function to build the dependencies required for the vitasdk toolchain/headers
 function(toolchain_deps toolchain_deps_dir toolchain_install_dir toolchain_suffix)
