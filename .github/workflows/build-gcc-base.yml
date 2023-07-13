@@ -35,7 +35,7 @@ jobs:
         cd _
         mkdir gcc_output
         cmake ../build_gcc_base/
-        make tarball DESTDIR=${PWD}/gcc_output/
+        make tarball
     - name: build test
       run: |
         cd _/gcc_output
