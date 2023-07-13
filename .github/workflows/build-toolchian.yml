@@ -1,4 +1,4 @@
-name: build-toolchian
+name: build-vita-toolchain
 
 permissions:
   actions: write
@@ -30,21 +30,18 @@ jobs:
         git config --global user.name "GitHub Action"
     - name: build test
       run: |
-        git clone --recursive https://github.com/vitasdk/vita-toolchain
-        cd vita-toolchain
-        ./build.sh
+        chmod +x *.sh
+        mkdir _
+        cd _
+        mkdir build
         cd build
-        sudo make install DESTDIR=${PWD}
-    - name: copy install
+        cmake ../../build_toolchain/
+        make -j$(nproc) tarball
+        ls
+    - name: after build
       run: |
-        mkdir vitasdk
-        cd vita-toolchain/build/usr/local
-        cp -r "./" "../../../../vitasdk"
-    - name: build tar
-      run: |
-        sudo tar "cfvj" "toolchain-linux.tar.gz" "vitasdk"
-        sudo rm -r ./vita-toolchain
-        sudo rm -r ./vitasdk
+        cp _/build/vitasdk-x86_64-linux-gnu-vita-toolchain-latest.tar.bz2 ./release/vitasdk-x86_64-linux-gnu-vita-toolchain-latest.tar.bz2
+        sudo rm -r "./_"
     - name: Commit files
       run: |
         git add .
