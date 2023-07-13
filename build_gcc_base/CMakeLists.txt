@@ -512,6 +512,7 @@ ExternalProject_Add(newlib
     GIT_REPOSITORY https://github.com/vitasdk/newlib
     GIT_TAG ${NEWLIB_TAG}
     ${GIT_SHALLOW_SUPPORT}
+    COMMAND ${CMAKE_COMMAND} -E make_directory ${toolchain_build_install_dir}
     # Pass the compiler_target_tools here so newlib picks up the fresh gcc-base compiler
     CONFIGURE_COMMAND ${compiler_flags} ${toolchain_tools} ${compiler_target_tools}
     ${wrapper_command} <SOURCE_DIR>/configure "CFLAGS_FOR_TARGET=-g -O2 -ffunction-sections -fdata-sections"
