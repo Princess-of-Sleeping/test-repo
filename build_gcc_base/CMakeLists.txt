@@ -487,8 +487,28 @@ ExternalProject_add(gcc-base
     INSTALL_COMMAND $(MAKE) install-gcc
     )
 
+ExternalProject_add(pre-binutils
+    URL https://github.com/Princess-of-Sleeping/test-repo/raw/master/release/vitasdk-x86_64-linux-gnu-binutils-latest.tar.bz2
+    URL_HASH ""
+    DOWNLOAD_DIR "./"
+    CONFIGURE_COMMAND ""
+    BUILD_COMMAND ""
+    INSTALL_COMMAND ""
+    COMMAND ${CMAKE_COMMAND} -E copy_directory <SOURCE_DIR>/vitasdk/* ${toolchain_build_install_dir}/
+    )
+
+ExternalProject_add(pre-vita-headers
+    URL https://github.com/Princess-of-Sleeping/test-repo/raw/master/release/vitasdk-x86_64-linux-gnu-vita-headers-latest.tar.bz2
+    URL_HASH ""
+    DOWNLOAD_DIR "./"
+    CONFIGURE_COMMAND ""
+    BUILD_COMMAND ""
+    INSTALL_COMMAND ""
+    COMMAND ${CMAKE_COMMAND} -E copy_directory <SOURCE_DIR>/vitasdk/* ${toolchain_build_install_dir}/
+    )
+
 ExternalProject_Add(newlib
-    DEPENDS gcc-base
+    DEPENDS pre-binutils pre-vita-headers gcc-base
     GIT_REPOSITORY https://github.com/vitasdk/newlib
     GIT_TAG ${NEWLIB_TAG}
     ${GIT_SHALLOW_SUPPORT}
