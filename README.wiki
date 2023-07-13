@@ -8,6 +8,9 @@
 | binutils
 | None
 |-
+| gdb
+| None
+|-
 | vita-toolchain
 | some libs
 |}
