@@ -39,8 +39,11 @@ jobs:
         make -j$(nproc) tarball
     - name: after build
       run: |
-        ls
-    - name: after build 2
+        cp _/build/vitasdk-binutils-latest.tar.bz2 ./vitasdk-binutils-latest.tar.bz2
+        sudo rm -r "./_"
+    - name: Commit files
       run: |
-        cd _
-        ls
+        git add .
+        git commit -m "Merge" -a
+        git pull --rebase
+        git push origin master
