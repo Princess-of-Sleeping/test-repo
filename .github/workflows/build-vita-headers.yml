@@ -43,8 +43,8 @@ jobs:
         cp -r "./db" "../vitasdk/share/vita-headers"
     - name: build-nid-db
       run: |
-        export PATH=$PWD/vitasdk/bin:$PATH
-        ./_/vitasdk/bin/vita-libs-gen-2 -yml=./vita-headers/db -output=./dstdir
+        export PATH=$PWD/_/vitasdk/bin:$PATH
+        vita-libs-gen-2 -yml=./vita-headers/db -output=./dstdir
         cd dstdir
         make
         cp *.a ../vitasdk/arm-vita-eabi/lib
