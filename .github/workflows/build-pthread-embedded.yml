@@ -33,7 +33,7 @@ jobs:
         chmod +x *.sh
         mkdir _
         cd _
-        cmake ../pthread-embedded/
+        cmake ../build_pthread-embedded/
         make tarball
     - name: after build
       run: |
