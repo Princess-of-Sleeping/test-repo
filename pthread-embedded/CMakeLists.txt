@@ -515,6 +515,7 @@ ExternalProject_add(pre-newlib
     BUILD_COMMAND ""
     INSTALL_COMMAND ""
     COMMAND ${CMAKE_COMMAND} -E copy_directory <SOURCE_DIR>/ ${toolchain_build_install_dir}/
+    COMMAND ${CMAKE_COMMAND} -E copy_directory <SOURCE_DIR>/ ${CMAKE_INSTALL_PREFIX}/
     )
 
 # Build a complete gcc compiler to be able to compile the full gcc for the host when crosscompiling.
