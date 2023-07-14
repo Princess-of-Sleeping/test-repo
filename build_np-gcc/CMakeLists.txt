@@ -639,9 +639,11 @@ ExternalProject_add(gcc-final
     --host=${host_native}
     --target=${target_arch}
     --prefix=${CMAKE_INSTALL_PREFIX}
-    --libdir=${CMAKE_INSTALL_PREFIX}/lib
-    --libexecdir=${CMAKE_INSTALL_PREFIX}/lib
+    # --libdir=${CMAKE_INSTALL_PREFIX}/lib
+    # --libexecdir=${CMAKE_INSTALL_PREFIX}/lib
     # --with-sysroot=${CMAKE_INSTALL_PREFIX}/${target_arch}
+    --libdir=${toolchain_target_depends_dir}/lib
+    --libexecdir=${toolchain_target_depends_dir}/lib
     --with-sysroot=${toolchain_target_depends_dir}/${target_arch}
     --with-gmp=${toolchain_target_depends_dir}
     --with-mpfr=${toolchain_target_depends_dir}
