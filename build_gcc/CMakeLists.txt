@@ -566,6 +566,7 @@ ExternalProject_add(pre-pthread-embedded
     BUILD_COMMAND ""
     INSTALL_COMMAND ""
     COMMAND ${CMAKE_COMMAND} -E copy_directory <SOURCE_DIR>/ ${toolchain_build_install_dir}/
+    COMMAND ${CMAKE_COMMAND} -E copy_directory <SOURCE_DIR>/ ${CMAKE_INSTALL_PREFIX}/
     )
 
 ExternalProject_add(gcc-final
