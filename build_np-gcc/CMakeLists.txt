@@ -526,7 +526,7 @@ ExternalProject_add(pre-binutils
     CONFIGURE_COMMAND ""
     BUILD_COMMAND ""
     INSTALL_COMMAND ""
-    COMMAND ${CMAKE_COMMAND} -E copy_directory <SOURCE_DIR>/ ${toolchain_build_install_dir}/
+    COMMAND ${CMAKE_COMMAND} -E copy_directory <SOURCE_DIR>/ ${CMAKE_INSTALL_PREFIX}/
     )
 
 ExternalProject_add(pre-vita-headers
@@ -536,7 +536,7 @@ ExternalProject_add(pre-vita-headers
     CONFIGURE_COMMAND ""
     BUILD_COMMAND ""
     INSTALL_COMMAND ""
-    COMMAND ${CMAKE_COMMAND} -E copy_directory <SOURCE_DIR>/ ${toolchain_build_install_dir}/
+    COMMAND ${CMAKE_COMMAND} -E copy_directory <SOURCE_DIR>/ ${CMAKE_INSTALL_PREFIX}/
     )
 
 ExternalProject_Add(newlib
@@ -639,12 +639,12 @@ ExternalProject_add(gcc-final
     --host=${host_native}
     --target=${target_arch}
     --prefix=${CMAKE_INSTALL_PREFIX}
-    # --libdir=${CMAKE_INSTALL_PREFIX}/lib
-    # --libexecdir=${CMAKE_INSTALL_PREFIX}/lib
-    # --with-sysroot=${CMAKE_INSTALL_PREFIX}/${target_arch}
-    --libdir=${toolchain_target_depends_dir}/lib
-    --libexecdir=${toolchain_target_depends_dir}/lib
-    --with-sysroot=${toolchain_target_depends_dir}/${target_arch}
+    --libdir=${CMAKE_INSTALL_PREFIX}/lib
+    --libexecdir=${CMAKE_INSTALL_PREFIX}/lib
+    --with-sysroot=${CMAKE_INSTALL_PREFIX}/${target_arch}
+    # --libdir=${toolchain_target_depends_dir}/lib
+    # --libexecdir=${toolchain_target_depends_dir}/lib
+    # --with-sysroot=${toolchain_target_depends_dir}/${target_arch}
     --with-gmp=${toolchain_target_depends_dir}
     --with-mpfr=${toolchain_target_depends_dir}
     --with-mpc=${toolchain_target_depends_dir}
