@@ -10,7 +10,7 @@
 | newlib | binutils, gcc-base, vita-headers | [![build-newlib](https://github.com/Princess-of-Sleeping/test-repo/actions/workflows/build-newlib.yml/badge.svg)](https://github.com/Princess-of-Sleeping/test-repo/actions/workflows/build-newlib.yml) |
 | pthread-embedded | binutils, gcc-base, vita-headers, newlib | [![build-pthread-embedded](https://github.com/Princess-of-Sleeping/test-repo/actions/workflows/build-pthread-embedded.yml/badge.svg)](https://github.com/Princess-of-Sleeping/test-repo/actions/workflows/build-pthread-embedded.yml) |
 | gcc-complete | newlib, gmp, mpfr, mpc, isl, libelf | - |
-| gcc-final | newlib gcc-<base|complete> pthread-embedded, gmp, mpfr, mpc, isl, libelf | - |
+| gcc-final | newlib gcc pthread-embedded, gmp, mpfr, mpc, isl, libelf | - |
 | samples | None | - |
 | vdpm | None | - |
 | vita-makepkg | None | - |
