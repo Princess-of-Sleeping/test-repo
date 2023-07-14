@@ -570,7 +570,7 @@ ExternalProject_add(pre-pthread-embedded
 
 ExternalProject_add(gcc-final
     DEPENDS gmp_${target_suffix} mpfr_${target_suffix} mpc_${target_suffix} isl_${target_suffix} libelf_${target_suffix}
-    DEPENDS pre-newlib ${GCC_DEPENDS} pre-pthread-embedded
+    DEPENDS pre-newlib ${GCC_DEPENDS} pre-pthread-embedded pre-binutils
     URL http://ftp.gnu.org/gnu/gcc/gcc-${GCC_VERSION}/gcc-${GCC_VERSION}.tar.xz
     URL_HASH ${GCC_HASH}
     DOWNLOAD_DIR ${DOWNLOAD_DIR}
