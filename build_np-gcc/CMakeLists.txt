@@ -527,6 +527,7 @@ ExternalProject_add(pre-binutils
     BUILD_COMMAND ""
     INSTALL_COMMAND ""
     COMMAND ${CMAKE_COMMAND} -E copy_directory <SOURCE_DIR>/ ${CMAKE_INSTALL_PREFIX}/
+    COMMAND ${CMAKE_COMMAND} -E copy_directory <SOURCE_DIR>/ ${toolchain_build_install_dir}/
     )
 
 ExternalProject_add(pre-vita-headers
