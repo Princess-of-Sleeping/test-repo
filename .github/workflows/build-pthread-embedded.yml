@@ -1,0 +1,47 @@
+name: build-pthread-embedded
+
+permissions:
+  actions: write
+  checks: write
+  contents: write
+
+on:
+  # push:
+  #   branches:
+  #     - '*'
+  repository_dispatch:
+    types: [run_build]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v2
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y software-properties-common
+        sudo apt-get install -y cmake cmake-data git build-essential autoconf automake libtool texinfo bison flex pkg-config
+    - name: git setting
+      run: |
+        git config --global user.email "action@github.com"
+        git config --global user.name "GitHub Action"
+    - name: build test
+      run: |
+        chmod +x *.sh
+        mkdir _
+        cd _
+        cmake ../pthread-embedded/
+        make tarball
+    - name: after build
+      run: |
+        cp _/vitasdk-x86_64-linux-gnu-pthread-embedded-latest.tar.bz2 ./release/vitasdk-x86_64-linux-gnu-pthread-embedded-latest.tar.bz2
+        sudo rm -r "./_"
+    - name: Commit files
+      run: |
+        git add .
+        git commit -m "Merge" -a
+        git pull --rebase
+        git push origin master
