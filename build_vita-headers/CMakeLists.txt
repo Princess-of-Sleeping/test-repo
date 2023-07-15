@@ -517,9 +517,9 @@ ExternalProject_add(vita-headers
     GIT_REPOSITORY https://github.com/vitasdk/vita-headers
     GIT_TAG ${HEADERS_TAG}
     ${GIT_SHALLOW_SUPPORT}
-    CONFIGURE_COMMAND ""
+    CONFIGURE_COMMAND "${___}-2 -yml=<SOURCE_DIR>/db -output=<BINARY_DIR>"
     # BUILD_COMMAND VITA_LIBS_GEN=${vita_libs_gen_command}
-    BUILD_COMMAND ${___}-2 -yml=<SOURCE_DIR>/db -output=<BINARY_DIR> && ${MAKE}
+    BUILD_COMMAND ${MAKE}
     # Copy the generated .a files to the install directory
     INSTALL_COMMAND ${CMAKE_COMMAND} -DGLOB_PATTERN=<BINARY_DIR>/*/*/*a
     -DINSTALL_DIR=${CMAKE_INSTALL_PREFIX}/${target_arch}/lib
