@@ -516,10 +516,7 @@ ExternalProject_add(vita-headers
     ${GIT_SHALLOW_SUPPORT}
     CONFIGURE_COMMAND ""
     # BUILD_COMMAND VITA_LIBS_GEN=${vita_libs_gen_command}
-    BUILD_COMMAND VITA_LIBS_GEN="${___}"
-        ARCH=${binutils_prefix}
-        BYPASS_INSTALL=1
-        python <SOURCE_DIR>/build.py <BINARY_DIR>
+    BUILD_COMMAND ${___}-2 -yml=<SOURCE_DIR>/db -output=<BINARY_DIR> && make
     # Copy the generated .a files to the install directory
     INSTALL_COMMAND ${CMAKE_COMMAND} -DGLOB_PATTERN=<BINARY_DIR>/*/*/*a
     -DINSTALL_DIR=${CMAKE_INSTALL_PREFIX}/${target_arch}/lib
