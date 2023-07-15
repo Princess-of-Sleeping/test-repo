@@ -518,8 +518,8 @@ ExternalProject_add(vita-headers
     ${GIT_SHALLOW_SUPPORT}
     CONFIGURE_COMMAND ${___}-2 -yml=<SOURCE_DIR>/db -output=<BINARY_DIR>
     # BUILD_COMMAND VITA_LIBS_GEN=${vita_libs_gen_command}
-    BUILD_COMMAND ${MAKE} install ARCH=${binutils_prefix} install
-    INSTALL_COMMAND ""
+    BUILD_COMMAND ${MAKE} ARCH=${binutils_prefix}
+    INSTALL_COMMAND ${MAKE} install
     # Copy the generated .a files to the install directory
     COMMAND ${CMAKE_COMMAND} -DGLOB_PATTERN=<BINARY_DIR>/*/*/*a -DINSTALL_DIR=${CMAKE_INSTALL_PREFIX}/${target_arch}/lib -P ${CMAKE_SOURCE_DIR}/../cmake/install_files.cmake
     # Copy the include headers to the installation directory
