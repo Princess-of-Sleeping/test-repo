@@ -11,7 +11,7 @@
 | pthread-embedded | binutils, gcc-base, vita-headers, newlib | [![build-pthread-embedded](https://github.com/Princess-of-Sleeping/test-repo/actions/workflows/build-pthread-embedded.yml/badge.svg)](https://github.com/Princess-of-Sleeping/test-repo/actions/workflows/build-pthread-embedded.yml) |
 | gcc-complete | newlib, gmp, mpfr, mpc, isl, libelf | - |
 | gcc-final | newlib gcc pthread-embedded, gmp, mpfr, mpc, isl, libelf | [![build-gcc](https://github.com/Princess-of-Sleeping/test-repo/actions/workflows/build-gcc.yml/badge.svg)](https://github.com/Princess-of-Sleeping/test-repo/actions/workflows/build-gcc.yml) |
-| np-gcc | newlib gcc pthread-embedded, gmp, mpfr, mpc, isl, libelf | [![build-np-gcc](https://github.com/Princess-of-Sleeping/test-repo/actions/workflows/build-np-gcc.yml/badge.svg)](https://github.com/Princess-of-Sleeping/test-repo/actions/workflows/build-np-gcc.yml) |
+| np-gcc (newlib + pthread + gcc) | gmp, mpfr, mpc, isl, libelf | [![build-np-gcc](https://github.com/Princess-of-Sleeping/test-repo/actions/workflows/build-np-gcc.yml/badge.svg)](https://github.com/Princess-of-Sleeping/test-repo/actions/workflows/build-np-gcc.yml) |
 | samples | None | - |
 | vdpm | None | - |
 | vita-makepkg | None | - |
