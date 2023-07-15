@@ -506,7 +506,6 @@ ExternalProject_add(pre-binutils
     BUILD_COMMAND ""
     INSTALL_COMMAND ""
     COMMAND ${CMAKE_COMMAND} -E copy_directory <SOURCE_DIR>/ ${toolchain_build_install_dir}/
-    COMMAND ${CMAKE_COMMAND} -E copy_directory <SOURCE_DIR>/ ${CMAKE_INSTALL_PREFIX}/
     )
 
 set(___ "${CMAKE_CURRENT_BINARY_DIR}/pre-toolchain-prefix/src/pre-toolchain/bin/vita-libs-gen")
@@ -519,7 +518,7 @@ ExternalProject_add(vita-headers
     ${GIT_SHALLOW_SUPPORT}
     CONFIGURE_COMMAND ${___}-2 -yml=<SOURCE_DIR>/db -output=<BINARY_DIR>
     # BUILD_COMMAND VITA_LIBS_GEN=${vita_libs_gen_command}
-    BUILD_COMMAND ${MAKE}
+    BUILD_COMMAND ${MAKE} ARCH=${binutils_prefix}
     # Copy the generated .a files to the install directory
     INSTALL_COMMAND ${CMAKE_COMMAND} -DGLOB_PATTERN=<BINARY_DIR>/*/*/*a
     -DINSTALL_DIR=${CMAKE_INSTALL_PREFIX}/${target_arch}/lib
