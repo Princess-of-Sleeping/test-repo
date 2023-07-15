@@ -56,7 +56,7 @@ jobs:
         overwrite: true
         file_glob: true
         tag: binutils
-        release_name: binutils-linux
+        release_name: binutils
   build-macos:
     runs-on: macos-12
     steps:
@@ -94,7 +94,7 @@ jobs:
         overwrite: true
         file_glob: true
         tag: binutils
-        release_name: binutils-macos
+        release_name: binutils
   build-windows:
     # TODO match as build-linux
     # we don't know reason yet, mingw build was failed when libelf compille.
@@ -140,4 +140,4 @@ jobs:
         overwrite: true
         file_glob: true
         tag: binutils
-        release_name: binutils-windows
+        release_name: binutils
