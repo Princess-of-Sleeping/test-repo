@@ -96,13 +96,11 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y software-properties-common
         sudo apt-get install -y cmake cmake-data git build-essential autoconf automake libtool texinfo bison flex pkg-config g++-mingw-w64
-    - name: git setting
-      run: |
-        git config --global user.email "action@github.com"
-        git config --global user.name "GitHub Action"
     - name: build test
       run: |
         chmod +x *.sh
+        git config --global user.email "action@github.com"
+        git config --global user.name "GitHub Action"
         unset CXX
         unset CC
         mkdir _
