@@ -495,6 +495,7 @@ ExternalProject_add(pre-toolchain
     CONFIGURE_COMMAND ""
     BUILD_COMMAND ""
     INSTALL_COMMAND ""
+    COMMAND ${CMAKE_COMMAND} -E copy_directory <SOURCE_DIR>/ ${toolchain_build_install_dir}/
     )
 
 ExternalProject_add(pre-binutils
@@ -504,6 +505,7 @@ ExternalProject_add(pre-binutils
     CONFIGURE_COMMAND ""
     BUILD_COMMAND ""
     INSTALL_COMMAND ""
+    COMMAND ${CMAKE_COMMAND} -E copy_directory <SOURCE_DIR>/ ${toolchain_build_install_dir}/
     )
 
 set(___ "${CMAKE_CURRENT_BINARY_DIR}/pre-toolchain-prefix/src/pre-toolchain/bin/vita-libs-gen")
