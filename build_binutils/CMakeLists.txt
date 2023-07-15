@@ -394,6 +394,20 @@ list(APPEND toolchain_tools
     AS_FOR_TARGET=${binutils_prefix}-as
     )
 
+ExternalProject_Add(vita-makepkg
+    GIT_REPOSITORY https://github.com/vitasdk/vita-makepkg.git
+    GIT_TAG ${VITA_MAKEPKG_TAG}
+    ${GIT_SHALLOW_SUPPORT}
+    BUILD_IN_SOURCE 1
+    CONFIGURE_COMMAND ""
+    BUILD_COMMAND ""
+    INSTALL_COMMAND ${CMAKE_COMMAND} -E make_directory ${toolchain_build_install_dir}/bin/
+    COMMAND ${CMAKE_COMMAND} -E copy_directory <SOURCE_DIR>/libmakepkg ${toolchain_build_install_dir}/bin/libmakepkg
+    COMMAND ${CMAKE_COMMAND} -E copy <SOURCE_DIR>/vita-makepkg ${toolchain_build_install_dir}/bin/
+    COMMAND ${CMAKE_COMMAND} -E copy <SOURCE_DIR>/makepkg.conf.sample ${toolchain_build_install_dir}/bin/makepkg.conf
+    ${UPDATE_DISCONNECTED_SUPPORT}
+    )
+
 set(version_info_file ${CMAKE_INSTALL_PREFIX}/version_info.txt)
 
 # Merge the commit ids of the collected projects into a single file
@@ -407,7 +421,7 @@ add_custom_command(OUTPUT ${version_info_file}
 # add_custom_command(OUTPUT "vitasdk-${host_native}-${build_date}.tar.bz2"
 add_custom_command(OUTPUT "vitasdk-${host_native}-binutils-latest.tar.bz2"
     COMMAND ${CMAKE_COMMAND} -E tar "cfvj" "vitasdk-${host_native}-binutils-latest.tar.bz2" "${CMAKE_INSTALL_PREFIX}"
-    DEPENDS binutils_${target_suffix}
+    DEPENDS binutils_${target_suffix} vita-makepkg
     COMMENT "Creating vitasdk-${host_os}-${build_date}.tar.bz2"
     )
 
