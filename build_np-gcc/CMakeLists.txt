@@ -666,7 +666,7 @@ ExternalProject_add(gcc-final
     COMMAND ${CMAKE_COMMAND} -E remove_directory ${CMAKE_INSTALL_PREFIX}/share/info
     # Remove .la files
     COMMAND ${CMAKE_COMMAND} -DGLOB_PATTERN=${CMAKE_INSTALL_PREFIX}/*.la
-    -P ${CMAKE_SOURCE_DIR}/cmake/remove_files.cmake
+    -P ${CMAKE_SOURCE_DIR}/../cmake/remove_files.cmake
     )
 
 ExternalProject_Add(samples
@@ -726,15 +726,15 @@ endif()
 add_custom_command(TARGET gcc-final POST_BUILD
     COMMAND ${CMAKE_COMMAND} -DHOST_SYSTEM_NAME=${CMAKE_HOST_SYSTEM_NAME}
     -DBINDIR=${CMAKE_INSTALL_PREFIX}/bin
-    -P ${CMAKE_SOURCE_DIR}/cmake/strip_host_binaries.cmake
+    -P ${CMAKE_SOURCE_DIR}/../cmake/strip_host_binaries.cmake
 
     COMMAND ${CMAKE_COMMAND} -DHOST_SYSTEM_NAME=${CMAKE_HOST_SYSTEM_NAME}
     -DBINDIR=${CMAKE_INSTALL_PREFIX}/${target_arch}/bin
-    -P ${CMAKE_SOURCE_DIR}/cmake/strip_host_binaries.cmake
+    -P ${CMAKE_SOURCE_DIR}/../cmake/strip_host_binaries.cmake
 
     COMMAND ${CMAKE_COMMAND} -DHOST_SYSTEM_NAME=${CMAKE_HOST_SYSTEM_NAME}
     -DBINDIR=${CMAKE_INSTALL_PREFIX}/lib/gcc/${target_arch}/${GCC_VERSION}
-    -P ${CMAKE_SOURCE_DIR}/cmake/strip_host_binaries.cmake
+    -P ${CMAKE_SOURCE_DIR}/../cmake/strip_host_binaries.cmake
 
     COMMENT "Stripping host binaries"
     )
@@ -747,7 +747,7 @@ add_custom_command(TARGET gcc-final POST_BUILD
 
     COMMAND ${CMAKE_COMMAND} -DOBJCOPY_COMMAND=${binutils_prefix}-objcopy
     -DPATTERN_GLOB=${CMAKE_INSTALL_PREFIX}/lib/gcc/${target_arch}/${GCC_VERSION}/*[!d][!d][!l].[ao]
-    -P ${CMAKE_SOURCE_DIR}/cmake/strip_target_objects.cmake
+    -P ${CMAKE_SOURCE_DIR}/../cmake/strip_target_objects.cmake
 
     COMMENT "Stripping target objects"
     )
