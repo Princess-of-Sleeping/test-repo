@@ -33,26 +33,20 @@ jobs:
         chmod +x *.sh
         mkdir _
         cd _
-        mkdir build
-        cd build
-        cmake ../../build_binutils/
+        cmake ../build_binutils/
         make -j$(nproc) tarball
         ls
-    - name: after build
-      run: |
-        cp _/build/vitasdk-x86_64-linux-gnu-binutils-latest.tar.bz2 ./release/vitasdk-x86_64-linux-gnu-binutils-latest.tar.bz2
-        sudo rm -r "./_"
     - name: Upload artifacts
       if: ${{ success() }}
       uses: actions/upload-artifact@v3
       with:
         name: vitasdk-binutils-linux
-        path: ./release/vitasdk-x86_64-linux-gnu-binutils-latest.tar.bz2
+        path: ./_/*.tar.bz2
     - uses: svenstaro/upload-release-action@v2
       if: contains(github.ref,'refs/heads/master')
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: ./release/vitasdk-x86_64-linux-gnu-binutils-latest.tar.bz2
+        file: ./_/*.tar.bz2
         overwrite: true
         file_glob: true
         tag: binutils
@@ -71,26 +65,20 @@ jobs:
         chmod +x *.sh
         mkdir _
         cd _
-        mkdir build
-        cd build
-        cmake ../../build_binutils/
+        cmake ../build_binutils/
         make -j$(nproc) tarball
         ls
-    - name: after build
-      run: |
-        cp _/build/vitasdk-x86_64-apple-darwin-binutils-latest.tar.bz2 ./release/vitasdk-x86_64-apple-darwin-binutils-latest.tar.bz2
-        sudo rm -r "./_"
     - name: Upload artifacts
       if: ${{ success() }}
       uses: actions/upload-artifact@v3
       with:
         name: vitasdk-binutils-macos
-        path: ./release/vitasdk-x86_64-apple-darwin-binutils-latest.tar.bz2
+        path: ./_/*.tar.bz2
     - uses: svenstaro/upload-release-action@v2
       if: contains(github.ref,'refs/heads/master')
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: ./release/vitasdk-x86_64-apple-darwin-binutils-latest.tar.bz2
+        file: ./_/*.tar.bz2
         overwrite: true
         file_glob: true
         tag: binutils
@@ -115,28 +103,23 @@ jobs:
     - name: build test
       run: |
         chmod +x *.sh
+        unset CXX
+        unset CC
         mkdir _
         cd _
-        mkdir build
-        cd build
-        cmake ../../build_binutils/ -DCMAKE_TOOLCHAIN_FILE=../../toolchain-x86_64-w64-mingw32.cmake
+        cmake ../build_binutils/ -DCMAKE_TOOLCHAIN_FILE=../toolchain-x86_64-w64-mingw32.cmake
         make -j$(nproc) tarball
-        ls
-    - name: after build
-      run: |
-        cp _/build/vitasdk-x86_64-w64-mingw32-binutils-latest.tar.bz2 ./release/vitasdk-x86_64-w64-mingw32-binutils-latest.tar.bz2
-        sudo rm -r "./_"
     - name: Upload artifacts
       if: ${{ success() }}
       uses: actions/upload-artifact@v3
       with:
         name: vitasdk-binutils-windows
-        path: ./release/vitasdk-x86_64-w64-mingw32-binutils-latest.tar.bz2
+        path: ./_/*.tar.bz2
     - uses: svenstaro/upload-release-action@v2
       if: contains(github.ref,'refs/heads/master')
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: ./release/vitasdk-x86_64-w64-mingw32-binutils-latest.tar.bz2
+        file: ./_/*.tar.bz2
         overwrite: true
         file_glob: true
         tag: binutils
