@@ -487,7 +487,6 @@ ExternalProject_add(gcc-base
     INSTALL_COMMAND $(MAKE) install-gcc
     )
 
-
 ExternalProject_add(pre-toolchain
     URL https://github.com/Princess-of-Sleeping/test-repo/raw/master/release/vitasdk-x86_64-linux-gnu-vita-toolchain-latest.tar.bz2
     URL_HASH ""
@@ -517,12 +516,10 @@ ExternalProject_add(vita-headers
     GIT_TAG ${HEADERS_TAG}
     ${GIT_SHALLOW_SUPPORT}
     CONFIGURE_COMMAND ${___}-2 -yml=<SOURCE_DIR>/db -output=<BINARY_DIR>
-    # BUILD_COMMAND VITA_LIBS_GEN=${vita_libs_gen_command}
-    BUILD_COMMAND ${MAKE} ARCH=${binutils_prefix}
-    INSTALL_COMMAND ""
-    COMMAND ${MAKE} ARCH=${binutils_prefix} && ls
+    BUILD_COMMAND ARCH=${binutils_prefix}
+        make
     # Copy the generated .a files to the install directory
-    COMMAND ${CMAKE_COMMAND} -DGLOB_PATTERN=<BINARY_DIR>/*/*/*a -DINSTALL_DIR=${CMAKE_INSTALL_PREFIX}/${target_arch}/lib -P ${CMAKE_SOURCE_DIR}/../cmake/install_files.cmake
+    INSTALL_COMMAND ${CMAKE_COMMAND} -DGLOB_PATTERN=<BINARY_DIR>/*.a -DINSTALL_DIR=${CMAKE_INSTALL_PREFIX}/${target_arch}/lib -P ${CMAKE_SOURCE_DIR}/../cmake/install_files.cmake
     # Copy the include headers to the installation directory
     COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_INSTALL_PREFIX}/${target_arch}/include
     COMMAND ${CMAKE_COMMAND} -E copy_directory <SOURCE_DIR>/include ${CMAKE_INSTALL_PREFIX}/${target_arch}/include
